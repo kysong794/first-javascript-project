@@ -40,3 +40,23 @@ body{
     justify-content: space-between;
     padding: 1em;
 }
+
+
+
+.input-area {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.project-links {
+    position: absolute;
+    right: 0;
+    display: flex;
+    gap: 10px;
+}
+
+.project-menu {
+    text-decoration: none;
+    color: #333;
+}
