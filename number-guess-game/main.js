@@ -15,6 +15,7 @@ let resultArea = document.getElementById("result-area");
 let resetButton = document.getElementById("reset-button");
 let chanceArea = document.getElementById("chance-area");
 let correct = document.getElementById("correct");
+let historyArea = document.getElementById("history-area");
 let chances = 3;
 let gameOver = false;
 let history=[];
@@ -35,7 +36,7 @@ function play(){
     let userValue = userInput.value;
 
 
-    if(userValue <1 || userValue>100){
+    if(userValue < 1 || userValue > 100){
         resultArea.textContent="1과 100사이 숫자를 입력해 주세요.";
         return;
     }
@@ -57,7 +58,8 @@ function play(){
     }
     
     history.push(userValue);
-    console.log(history);
+    
+    historyArea.textContent = `기록 : ${history}`
 
     if(chances < 1){
         gameOver = true;
@@ -70,14 +72,18 @@ function play(){
 
 function reset(){
     //user input 창 깨끗하게 정리
+    chances = 3;
+    chanceArea.textContent = `기회 : ${chances}번`;
+    gameOver = false;
+    playbutton.disabled = false;
     userInput.value = "";
-    
+    history=[];
+    historyArea.textContent = `기록 : ${history}`;
     //새로운번호 생성
-    pickRandomNum();   
+    pickRandomNum();
 
     resultArea.textContent="결과값이 여기 나옵니다"
-
-    playbutton.disabled = false; 
+    
 }
 
 pickRandomNum();
