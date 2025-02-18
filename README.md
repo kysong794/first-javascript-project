@@ -1,5 +1,8 @@
 
 javascript 강의 공부중
 
-도메인
+메인 도메인
 https://songsongstudy.netlify.app/
+
+업다운 게임
+https://songsong-updowngame.netlify.app
