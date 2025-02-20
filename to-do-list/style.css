@@ -1,82 +1,150 @@
-body{
-    margin:0;
+/* 전체 기본 스타일 */
+body {
+    margin: 0;
+    font-family: 'Arial', sans-serif;
     background-image: url("images/blue-curve-background_53876-113112.jpg.avif");
     background-repeat: no-repeat;
     background-size: cover;
 }
 
-.container{
-    background-color: aliceblue;
+/* 컨테이너 스타일 */
+.container {
+    background-color: white;
     min-height: 100vh;
-    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+    max-width: 600px;
+    margin: 2rem auto;
+    border-radius: 12px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.15);
+    padding: 1.5rem;
 }
 
-
-.task-area{
-    border: 1px solid lightgray;
-    margin-top: 2em;
-}
-.task-tabs{
+/* 입력창 스타일 */
+.input-area {
     display: flex;
-    border-bottom: 1px solid lightgray;
+    align-items: center;
+    gap: 10px;
+    padding: 10px;
     position: relative;
 }
-.task-tabs div{
-    padding: 1em;
+
+.input-area input {
+    flex-grow: 1;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 16px;
 }
 
-#under-line{
-    height: 4px;
-    background-color: pink;
+.input-area button {
+    padding: 12px 15px;
+    border: none;
+    background-color: #ff6b81;
+    color: white;
+    font-size: 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.3s ease-in-out;
+}
+
+.input-area button:hover {
+    background-color: #ff4757;
+}
+
+/* 할 일 목록 */
+.task-area {
+    border-top: 2px solid lightgray;
+    margin-top: 1.5rem;
+    padding-top: 1rem;
+}
+
+/* 탭 스타일 */
+.task-tabs {
+    display: flex;
+    justify-content: space-around;
+    border-bottom: 2px solid #ddd;
+    padding-bottom: 8px;
+    font-size: 16px;
+    position: relative;
+}
+
+/* 언더라인 위치 조정 (메뉴 아래로) */
+#under-line {
     position: absolute;
-    width: 80px;
-    left: 0px;
-    top: 52px;
-    padding:0px;
+    height: 4px;
+    background-color: #ff6b81;
+    bottom: -4px; /* 🔥 메뉴 바로 아래 위치하도록 수정 */
+    left: 0;
+    width: 0;
+    transition: all 0.3s ease-in-out;
+    border-radius: 2px;
+    padding:1px;
 }
 
+/* 탭 스타일 (클릭 효과) */
+.task-tabs div {
+    cursor: pointer;
+    padding: 10px;
+    font-weight: bold;
+    transition: color 0.3s;
+}
+
+.task-tabs div:hover {
+    color: #ff4757;
+}
+
+/* 할 일 개별 항목 */
 .task {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 10px;
+    padding: 12px;
     border-bottom: 1px solid #ddd;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    margin-bottom: 8px;
+    transition: background 0.3s ease-in-out;
 }
 
 .task-content {
-    padding: 5px 10px;  /* 여백 추가 */
-    flex-grow: 1;  /* 내용이 길어져도 버튼과 정렬 유지 */
+    flex-grow: 1;
+    font-size: 16px;
 }
 
+/* ✅ 완료된 항목 스타일 */
 .completed {
-    background-color: #d3d3d3; /* 회색 배경 */
+    background-color: #d3d3d3;
     text-decoration: line-through;
 }
 
-.task-done {
-    background-color: #888; 
-    text-decoration: line-through;
-}
-
-.input-area {
-    position: relative;
-    display: flex;
-    align-items: center;
-}
-
-.task-tabs{
+/* 버튼 스타일 */
+.task button {
+    background: none;
+    border: none;
     cursor: pointer;
+    font-size: 18px;
+    color: #ff6b81;
 }
 
-
-.project-links {
-    position: absolute;
-    right: 0;
-    display: flex;
-    gap: 10px;
+.task button:hover {
+    color: #ff4757;
 }
 
-.project-menu {
-    text-decoration: none;
-    color: #333;
+/* 반응형 디자인 */
+@media (max-width: 768px) {
+    .container {
+        max-width: 90%;
+        margin: 1rem auto;
+    }
+
+    .task-tabs {
+        font-size: 14px;
+    }
+
+    .input-area input {
+        font-size: 14px;
+    }
+
+    .task-content {
+        font-size: 14px;
+    }
 }
