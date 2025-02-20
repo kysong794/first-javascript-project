@@ -54,7 +54,10 @@ function addTask(){
     let taskContent = taskInput.value.trim();
     
     //입력값이 없으면 등록하지 않음
-    if (taskContent === "") return;
+    if (taskContent === "") {
+        alert('내용을 작성 바랍니다');
+        return;
+    }
 
     task = {
         id:randomIDGenerate(),
