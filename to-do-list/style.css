@@ -64,7 +64,9 @@ body{
     align-items: center;
 }
 
-
+.task-tabs{
+    cursor: pointer;
+}
 
 
 .project-links {
