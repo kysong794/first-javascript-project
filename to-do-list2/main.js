@@ -19,44 +19,25 @@ let taskInput = document.getElementById("task-input");
 let addButton = document.getElementById("add-button");
 let tabs = document.querySelectorAll(".task-tabs div")
 addButton.addEventListener("click", addTask);
-let task={}
-let taskList=[]
-let filterList=[];
-let mode="all";
+let task = {}
+let taskList = [];
+let filterList = [];
+let made = "all";
 
-for(let i=1; i<tabs.length;i++){
-    tabs[i].addEventListener("click", function(event){
-        filter(event);
-    });
+for(let i=0; i<tabs.length;i++){
+    tabs[i].addEventListener("click", (event) => filterLis(event));
 }
 
-//메뉴언더바 start
-let underLine = document.getElementById("under-line");
-let menus = document.querySelectorAll(".task-tabs div:not(#under-line)");
-window.addEventListener("load", () => {
-    let defaultMenu = document.getElementById("all");
-    setUnderline(defaultMenu);
-});
-menus.forEach(menu => menu.addEventListener("click", (e) => setUnderline(e.currentTarget)));
-
-function setUnderline(target) { 
-    underLine.style.left = target.offsetLeft + "px";
-    underLine.style.width = target.offsetWidth + "px";
-}
-//메뉴언더파 end
-
-//엔터기능 추가
-taskInput.addEventListener("keyup", function (event) {
-    if (event.key === "Enter") {
+taskInput.addEventListener("keyup", function(event) {
+    if(event.key === "Enter"){
         addTask();
     }
 });
 
 function addTask(){
-    let taskContent = taskInput.value.trim();
-    
-    //입력값이 없으면 등록하지 않음
-    if (taskContent === "") {
+    let taskContent = taskInput.Value.trim();
+
+    if(taskContent == ""){
         alert('내용을 작성 바랍니다');
         return;
     }
@@ -68,41 +49,36 @@ function addTask(){
     }
     taskList.push(task);
 
-    //현재 선택된 탭이 "진행중"일때 진행중 리스트에도 추가
-    if(mode === "ongoing") {
+    if(mode === "ongoing"){
         filterList.push(task);
     }
 
-    // 현재 선택된 탭이 "끝남"일때, 새로운 할일은 진행중으로 이동
-    if(mode ==="done") {
-        mode = "ongoing";
+    if(mode === "done"){
+        mode = "ongoing"
         setUnderline(document.getElementById("ongoing"));
         filterList = taskList.filter(task => !task.isComplete);
     }
     
-    //입력창 초기화
     taskInput.value = "";
     render();
 }
 
-function render() {
-    //1. 내가선택한 탭에 따라서
+
+function render(){
     let list=[];
+
     if(mode ==="all"){
-        //all taskList
         list = taskList;
     } else if(mode ==="ongoing" || mode === "done"){
-        //4. ongoing, done, filterList
         list = filterList;
     }
-    //2. 리스트를 달리 보여준다
-    //3. all taskList
-    
-    let resultHTML = '';
-    for (let i = 0; i < list.length; i++) {
-        let taskContentClass = list[i].isComplete ? "task-content completed" : "task-content";
-        
-        resultHTML += `
+
+    let resultHTML='';
+
+    for(let i=0; i < list.length; i++){
+        let taskContent = list[i].isComplete ? "task-content completed" : "task-content";
+
+        resultHTML +=`
             <div class="task">
                 <div class="${taskContentClass}">${list[i].taskContent}</div>
                 <div>
@@ -119,30 +95,9 @@ function render() {
     document.getElementById("task-board").innerHTML = resultHTML;
 }
 
-//할일 체크 버튼(아이콘)
-function toggleComplete(id){
-    for(let i=0; i<taskList.length; i++){
-        if(taskList[i].id == id){
-            taskList[i].isComplete=!taskList[i].isComplete;
-            break;
-        }
-    }
-
-    //진행중,끝남 각 탭에서 변경에 맞게 리스트에도 변화 
-    if (mode === "ongoing") {
-        alert('끝남으로 이동합니다');
-        filterList = taskList.filter(task => !task.isComplete); // 진행중만 남기기
-    } else if (mode === "done") {
-        alert('진행중으로 이동합니다');
-        filterList = taskList.filter(task => task.isComplete); // 끝난 할 일만 남기기
-    }
-    render();
-}
-
-
-function deleteTask(id) {
-    let deleteCheck = confirm('정말로 삭제 하시겠습니까?');
-    if (deleteCheck) {
+function deleteTask(id){
+    let deleteTask = confirm('정말로 삭제 하시겠습니까?');
+    if(deleteCheck){
         taskList = taskList.filter(task => task.id !== id);
         filterList = filterList.filter(task => task.id !== id);
     }
@@ -153,22 +108,16 @@ function filter(event){
     mode = event.target.id;
     filterList = [];
     if(mode == "all"){
-        //전체 리스트를 보여준다
         render();
-    } else if(mode == "ongoing"){
-        //진행중인 아이템을 보여준다.
-        //task.isComplete = false
-        for(let i=0;i<taskList.length;i++){
+    } else if (mode == "ongoing"){
+        for(let i = 0; i<taskList.length; i++){
             if(taskList[i].isComplete === false){
                 filterList.push(taskList[i]);
             }
         }
         render();
-        //console.log("진행중", filterList);
-    } else if(mode == "done"){
-        //끝나는 케이스
-        //task.isComplete = true
-        for(let i=0;i<taskList.length;i++){
+    } else if(mode =="done"){
+        for(let i=0; i<taskList.length; i++){
             if(taskList[i].isComplete === true){
                 filterList.push(taskList[i]);
             }
@@ -177,6 +126,7 @@ function filter(event){
     }
 }
 
+//랜덤 id 생성
 function randomIDGenerate(){
     return '_' + Math.random().toString(36).slice(2, 9);
 }
