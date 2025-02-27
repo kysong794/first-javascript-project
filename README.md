@@ -8,5 +8,7 @@ https://songsongstudy.netlify.app/
 https://songsong-updowngame.netlify.app
 
 To-Do-List
+https://songsongstudy.netlify.app/to-do-list/
 
 뉴스 타임즈
+https://songsongstudy.netlify.app/times-news/
