@@ -40,7 +40,7 @@ const fetchNews = async (params = {}) => {
     }
 };
 
-// 검색 결과가 없을 때 메시지 표시
+// 검색 결과가 없을 때 메시지 표시, style 가운데정렬 추가
 const renderNoResults = () => {
     newsBoard.innerHTML = `<div class="alert alert-danger" role="alert" style="text-align:center;">No matches for your search</div>`;
 };
