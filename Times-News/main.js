@@ -111,7 +111,7 @@ const render = () => {
             <div class="row news">
                 <div class="col-lg-4">
                     <img class="news-img-size" src="${imageUrl}" 
-                    onerror="this.onerror=null; this.src='/image/default-image.avif';"/>
+                    onerror="this.onerror=null; this.src='https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/300px-No_image_available.svg.png';"/>
                 </div>
                 <div class="col-lg-8">
                     <h2>${news.title}</h2>
