@@ -1,5 +1,5 @@
 
-javascript 강의 공부중
+javascript 프로젝트
 
 메인 도메인
 https://songsongstudy.netlify.app/
